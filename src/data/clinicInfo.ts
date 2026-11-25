@@ -12,7 +12,7 @@ export function telHref(localNumber: string): string {
 
 export const clinicInfo = {
   name: "Dental Art SM",
-  shortName: "Dental Art",
+  shortName: "Dental Art SM",
   tagline: "Umjetnost zdravog osmijeha.",
 
   // Primary phone used for quick-call buttons (navbar, hero, CTA band).
