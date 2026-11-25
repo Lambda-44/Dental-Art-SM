@@ -1,5 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import SmileMark from "./SmileMark";
+import heroPhoto from "../assets/clinic/hero.webp";
+import logo from "../assets/logo.jpeg";
 
 const indicators = ["Stručan tim", "Moderna tehnologija", "Individualan pristup"];
 
@@ -56,10 +58,11 @@ export default function Hero() {
         <div className="relative fade-up" style={{ animationDelay: "160ms" }}>
           <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5] sm:aspect-[3/4] shadow-[var(--shadow-soft)]">
             <img
-              src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1200&auto=format&fit=crop"
-              alt="Moderna, svijetla stomatološka ordinacija Dental Art SM"
+              src={heroPhoto}
+              alt="Ordinacija Dental Art SM — stomatološka stolica ispred Dental Art panoa"
               className="w-full h-full object-cover"
               loading="eager"
+              fetchPriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--color-ink)]/25 via-transparent to-transparent" />
           </div>
@@ -67,7 +70,7 @@ export default function Hero() {
           <div className="hidden sm:flex absolute -bottom-8 -left-8 items-center gap-4 bg-[color:var(--color-cream)] rounded-2xl shadow-[var(--shadow-card)] border border-[color:var(--color-line)] px-5 py-4 max-w-[15rem]">
             <div className="relative w-12 h-12 shrink-0 rounded-full overflow-hidden border-2 border-[color:var(--color-cream)] shadow">
               <img
-                src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=200&auto=format&fit=crop"
+                src={logo}
                 alt=""
                 className="w-full h-full object-cover"
               />

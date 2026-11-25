@@ -9,7 +9,7 @@ const nav = [
   { href: "#usluge", label: "Usluge" },
   { href: "#doktori", label: "Doktori" },
   { href: "#cjenovnik", label: "Cjenovnik" },
-  // { href: "#galerija", label: "Galerija" }, // privremeno isključeno — vraća se s Gallery sekcijom
+  { href: "#galerija", label: "Galerija" },
   { href: "#kontakt", label: "Kontakt" },
 ];
 

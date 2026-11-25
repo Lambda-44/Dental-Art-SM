@@ -27,7 +27,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Da li je moguće plaćanje karticom?",
     answer:
-      "Da, u ordinaciji je moguće plaćanje karticom, kao i gotovinom. Za detalje o dostupnim opcijama plaćanja slobodno nas kontaktirajte.",
+      "Ne, u ordinaciji je trenutno nije moguće plaćanje karticom. Za detalje o dostupnim opcijama plaćanja slobodno nas kontaktirajte.",
   },
   {
     question: "Koliko traje izbjeljivanje zuba?",

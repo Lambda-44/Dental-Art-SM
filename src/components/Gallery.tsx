@@ -3,12 +3,6 @@ import { galleryCategories, galleryImages, type GalleryCategory } from "../data/
 import SectionHeading from "./SectionHeading";
 import Lightbox from "./Lightbox";
 
-const spanClass: Record<string, string> = {
-  tall: "sm:row-span-2",
-  wide: "sm:col-span-2",
-  normal: "",
-};
-
 export default function Gallery() {
   const [category, setCategory] = useState<GalleryCategory>("Sve");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -25,7 +19,7 @@ export default function Gallery() {
           <SectionHeading
             eyebrow="Iznutra"
             title="Galerija"
-            subtitle="Zavirite u naš prostor, tim i savremeno opremljenu ordinaciju."
+            subtitle="Zavirite u naš prostor i savremeno opremljenu ordinaciju."
           />
 
           <div className="flex flex-wrap gap-2" role="group" aria-label="Filter galerije">
@@ -46,22 +40,28 @@ export default function Gallery() {
           </div>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 auto-rows-[10rem] sm:auto-rows-[12rem] gap-3 sm:gap-4">
+        {/* Masonry: photos keep their natural proportions (nothing is cropped),
+            and the columns balance themselves. `key` replays the fade when filtering. */}
+        <div key={category} className="mt-10 columns-2 lg:columns-3 gap-3 sm:gap-4 fade-up">
           {filtered.map((img, i) => (
             <button
               key={img.id}
               onClick={() => setLightboxIndex(i)}
-              className={`relative rounded-2xl overflow-hidden group ${spanClass[img.span ?? "normal"]}`}
               aria-label={`Otvori sliku: ${img.alt}`}
+              className="group relative block w-full mb-3 sm:mb-4 rounded-2xl overflow-hidden break-inside-avoid bg-[color:var(--color-cream-soft)]"
+              style={{ aspectRatio: `${img.width} / ${img.height}` }}
             >
               <img
-                src={img.src}
+                src={img.thumb}
                 alt={img.alt}
+                width={img.width}
+                height={img.height}
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                decoding="async"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-[color:var(--color-ink)]/0 group-hover:bg-[color:var(--color-ink)]/20 transition-colors" />
-              <span className="absolute bottom-3 left-3 text-xs font-medium text-[color:var(--color-cream)] bg-[color:var(--color-ink)]/50 backdrop-blur-sm px-2.5 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute inset-0 bg-[color:var(--color-ink)]/0 group-hover:bg-[color:var(--color-ink)]/15 transition-colors" />
+              <span className="absolute bottom-3 left-3 text-xs font-medium text-[color:var(--color-cream)] bg-[color:var(--color-ink)]/55 backdrop-blur-sm px-2.5 py-1 rounded-full opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity">
                 {img.category}
               </span>
             </button>

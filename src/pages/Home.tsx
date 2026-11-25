@@ -5,7 +5,7 @@ import About from "../components/About";
 import Services from "../components/Services";
 import WhyUs from "../components/WhyUs";
 import Doctors from "../components/Doctors";
-// import Gallery from "../components/Gallery"; // privremeno isključeno — vraća se kasnije
+import Gallery from "../components/Gallery";
 // import BeforeAfter from "../components/BeforeAfter"; // uklonjeno na zahtjev klijenta
 import Pricing from "../components/Pricing";
 import Process from "../components/Process";
@@ -33,7 +33,7 @@ export default function Home() {
         <Services />
         <WhyUs />
         <Doctors />
-        {/* <Gallery /> */}
+        <Gallery />
         {/* <BeforeAfter /> */}
         <Pricing />
         <Process />

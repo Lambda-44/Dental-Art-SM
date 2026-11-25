@@ -1,5 +1,6 @@
 import doctor1Photo from "../assets/doctors/doctor-1.jpeg";
 import doctor2Photo from "../assets/doctors/doctor-2.jpeg";
+import { telHref } from "./clinicInfo";
 
 export type Doctor = {
   id: string;
@@ -22,7 +23,7 @@ export const doctors: Doctor[] = [
     title: "Doktor dentalne medicine",
     specialization: "Protetika, konzervativna stomatologija i endodoncija",
     photo: doctor1Photo,
-    phone: { display: "060 301 05 50", href: "tel:+38760301050" },
+    phone: { display: "060 301 05 50", href: telHref("060 301 05 50") },
     bio: "Doktor dentalne medicine s višegodišnjim profesionalnim iskustvom u stomatologiji. Stomatološki fakultet u Travniku završio je u decembru 2018. godine, nakon čega je kontinuirano radio u stomatološkoj praksi. Posebno iskustvo posjeduje u oblasti protetike, konzervativne stomatologije, endodoncije, ekstrakcija i preventivne stomatologije, uz profesionalan odnos prema pacijentima i preciznost u radu.",
     education: ["Stomatološki fakultet u Travniku — doktor dentalne medicine (decembar 2018.)"],
     focusAreas: [
@@ -32,7 +33,7 @@ export const doctors: Doctor[] = [
       "Parodontološka terapija",
     ],
     experience: "Kontinuiran klinički rad od decembra 2018. godine",
-    languages: ["Bosanski", "Engleski"],
+    languages: ["Bosanski / Hrvatski / Srpski", "Engleski"],
   },
   {
     id: "dr-mustafa",
@@ -40,10 +41,10 @@ export const doctors: Doctor[] = [
     title: "Doktor dentalne medicine",
     specialization: "Protetika, estetska stomatologija i endodoncija",
     photo: doctor2Photo,
-    phone: { display: "060 347 82 44", href: "tel:+38760347844" },
+    phone: { display: "060 347 82 44", href: telHref("060 347 82 44") },
     bio: "Doktor dentalne medicine, diplomirao na Stomatološkom fakultetu sa klinikama Univerziteta u Sarajevu. Tokom studija stekao je praktično iskustvo radom u stomatološkim ordinacijama u Travniku, a poseban interes pokazuje za savremenu protetiku, konzervativnu stomatologiju, endodonciju i estetsku stomatologiju. Odlikuju ga odgovornost, preciznost i profesionalan odnos prema pacijentima.",
     education: [
-      "Stomatološki fakultet Univerziteta u Sarajevu — doktor dentalne medicine (septembar 2024.)",
+      "Stomatološki fakultet sa klinikama Univerziteta u Sarajevu — doktor dentalne medicine (septembar 2024.)",
     ],
     focusAreas: [
       "Protetika i planiranje protetske terapije",
@@ -52,6 +53,6 @@ export const doctors: Doctor[] = [
       "Osnove implantološke terapije",
     ],
     experience: "Klinički rad od 2024. godine, uz praktično iskustvo tokom studija",
-    languages: ["Bosanski", "Engleski"],
+    languages: ["Bosanski / Hrvatski / Srpski", "Engleski"],
   },
 ];

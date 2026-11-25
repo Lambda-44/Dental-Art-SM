@@ -1,5 +1,6 @@
 import { useReveal } from "../lib/useReveal";
 import SectionHeading from "./SectionHeading";
+import aboutPhoto from "../assets/clinic/about.webp";
 
 const points = [
   "Savremena oprema i dijagnostika",
@@ -25,8 +26,8 @@ export default function About() {
         >
           <div className="rounded-[1.75rem] overflow-hidden aspect-[4/5] sm:aspect-[5/4] lg:aspect-[4/5] shadow-[var(--shadow-card)]">
             <img
-              src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1100&auto=format&fit=crop"
-              alt="Interijer stomatološke ordinacije Dental Art SM"
+              src={aboutPhoto}
+              alt="Interijer ordinacije Dental Art SM sa dvije stomatološke jedinice"
               className="w-full h-full object-cover"
               loading="lazy"
             />

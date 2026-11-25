@@ -9,7 +9,7 @@ const links = [
   { href: "#usluge", label: "Usluge" },
   { href: "#doktori", label: "Doktori" },
   { href: "#cjenovnik", label: "Cjenovnik" },
-  // { href: "#galerija", label: "Galerija" }, // privremeno isključeno — vraća se s Gallery sekcijom
+  { href: "#galerija", label: "Galerija" },
   { href: "#kontakt", label: "Kontakt" },
 ];
 
@@ -31,13 +31,35 @@ export default function Navbar() {
     };
   }, [open]);
 
+  // Close the mobile menu with Escape, and if the screen grows to desktop width
+  // (e.g. rotating a tablet) so the page never stays scroll-locked.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const onChange = () => mq.matches && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    mq.addEventListener("change", onChange);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      mq.removeEventListener("change", onChange);
+    };
+  }, [open]);
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    setOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    const scroll = () => document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    if (open) {
+      // Let the scroll-lock release first, otherwise iOS Safari ignores the scroll.
+      setOpen(false);
+      setTimeout(scroll, 120);
+    } else {
+      scroll();
+    }
   };
 
   return (
+    <>
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
@@ -104,21 +126,28 @@ export default function Navbar() {
           className="lg:hidden p-2 -mr-2 text-[color:var(--color-ink)]"
           aria-label={open ? "Zatvori meni" : "Otvori meni"}
           aria-expanded={open}
+          aria-controls="mobile-menu"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
       </nav>
 
-      {/* Mobile menu */}
+    </header>
+
+      {/* Mobile menu — deliberately a sibling of <header>, not a child: the header
+          uses backdrop-blur, which would make this "fixed" panel size itself to the
+          header instead of the screen. Sits below the header (z-40 < z-50) so the
+          logo and the close button stay visible and tappable. */}
       <div
-        className={`lg:hidden fixed inset-0 top-0 bg-[color:var(--color-cream)] transition-transform duration-300 ease-out ${
-          open ? "translate-x-0" : "translate-x-full"
+        id="mobile-menu"
+        inert={!open}
+        aria-hidden={!open}
+        className={`lg:hidden fixed inset-0 z-40 overflow-y-auto bg-[color:var(--color-cream)] pt-28 sm:pt-36 pb-10 transition-all duration-300 ease-out ${
+          open ? "translate-x-0 visible" : "translate-x-full invisible"
         }`}
-        style={{ zIndex: 40 }}
       >
-        <div className="h-24 sm:h-32" />
-        <ul className="container-page flex flex-col gap-1 pt-6">
+        <ul className="container-page flex flex-col">
           {links.map((link) => (
             <li key={link.href} className="border-b border-[color:var(--color-line)]">
               <a
@@ -144,6 +173,6 @@ export default function Navbar() {
           </a>
         </div>
       </div>
-    </header>
+    </>
   );
 }

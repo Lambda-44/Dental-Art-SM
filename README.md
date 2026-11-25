@@ -28,11 +28,19 @@ the code side needs to change unless the widget ID itself changes (it's the
 
 ## Currently disabled sections
 
-`Gallery`, `Testimonials`, and `BeforeAfter` are commented out in
-`src/pages/Home.tsx` (along with the "Galerija" nav link in `Navbar.tsx` and
-`Footer.tsx`) at the client's request. The components and their data files
-are untouched, so re-enabling any of them later is just a matter of
-uncommenting the relevant lines.
+`Testimonials` and `BeforeAfter` are commented out in `src/pages/Home.tsx`
+at the client's request. The components and their data files are untouched,
+so re-enabling either later is just a matter of uncommenting the relevant
+lines.
+
+## Photos
+
+Real clinic photos live in `src/assets/clinic/` (hero, about) and
+`src/assets/clinic/gallery/` (each photo has a full-size `NN.webp` for the
+lightbox and a smaller `NN-thumb.webp` for the grid). To add a gallery photo,
+drop both files there, import them in `src/data/gallery.ts` and add an entry
+— the filter buttons update automatically. `public/og-image.jpg` is the
+social-sharing preview image.
 
 ## Editing content
 
@@ -43,16 +51,14 @@ touching component code:
 - `stats.ts` — trust statistics band
 - `services.ts` — services list
 - `doctors.ts` — doctor profiles (photos, bios, credentials)
-- `gallery.ts` — gallery images and categories (currently unused — see above)
+- `gallery.ts` — gallery photos and categories
 - `beforeAfter.ts` — before/after comparison cases
 - `pricing.ts` — official price list by category
 - `testimonials.ts` — patient testimonial placeholders (currently unused — see above)
 - `faq.ts` — FAQ questions and answers
 
-Some photography still uses Unsplash placeholder images (hero, about,
-gallery data). Replace the `src`/`photo` URLs in the data files with real,
-licensed photography as it becomes available. Placeholder statistics are
-illustrative only and should be replaced with verified, real figures.
+Placeholder statistics (`stats.ts`) are illustrative only and should be
+replaced with verified, real figures.
 
 ## Structure
 
